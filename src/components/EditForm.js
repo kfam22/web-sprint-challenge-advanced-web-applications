@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axiosWithAuth from '../utils/axiosWithAuth';
+// import { useParams, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 const initialArticle = {
@@ -9,9 +11,23 @@ const initialArticle = {
     body: ""
 };
 
+
 const EditForm = (props)=> {
+    // const { id } = useParams();
+    // const { push } = useHistory();
+
     const [article, setArticle]  = useState(initialArticle);
     const {handleEdit, handleEditCancel, editId} = props;
+
+    useEffect(()=>{
+        axiosWithAuth().get(`articles/${editId}`)
+        .then(res=>{
+            setArticle(res.data);
+        })
+        .catch(err=>{
+            console.error(err);
+        })
+    },[])
 
     const handleChange = (e)=> {
         setArticle({
@@ -49,7 +65,7 @@ const EditForm = (props)=> {
             <label>Body</label>
             <input value={article.body} id="body" name="body" onChange={handleChange}/>
         </div>
-        <Button id="editButton">Edit Article</Button>
+        <Button type='submit' id="editButton">Edit Article</Button>
         <Button onClick={handleCancel}>Cancel</Button>
     </FormContainer>);
 }

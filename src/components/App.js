@@ -8,6 +8,7 @@ import BloomHeader from './BloomHeader';
 import Login from './Login';
 import View from './View';
 import Logout from './Logout';
+import EditForm from './EditForm';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
 
         <PrivateRoute exact path="/view" component={View}/>
         <PrivateRoute exact path="/logout" component={Logout}/>
+        {/* <PrivateRoute exact path="/edit/:id" component={EditForm}/> */}
 
                 
       </RouteContainer>

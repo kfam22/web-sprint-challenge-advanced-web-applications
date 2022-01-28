@@ -1,18 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Article from './Article';
 import EditForm from './EditForm';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const View = (props) => {
     const [articles, setArticles] = useState([]);
     const [editing, setEditing] = useState(false);
     const [editId, setEditId] = useState();
 
+    useEffect(()=>{
+        axiosWithAuth().get('/articles')
+        .then(res=>{
+            setArticles(res.data);
+        })
+        .catch(err=>{
+            console.error(err);
+        })
+    }, [])
+
     const handleDelete = (id) => {
+        axiosWithAuth().delete(`articles/${id}`)
+        .then(res=>{
+            setArticles(res.data);
+        })
+        .catch(err=>{
+            console.error(err);
+        })
     }
 
     const handleEdit = (article) => {
+        axiosWithAuth().put(`/articles/${article.id}`, article)
+        .then(res=>{
+            setArticles(res.data);
+            setEditing(false);
+        })
+        .catch(err=>{
+            console.error(err);
+        })
     }
 
     const handleEditSelect = (id)=> {
@@ -46,10 +73,16 @@ const View = (props) => {
 
 export default View;
 
+// * [X] In `View.js`, complete `handleDelete` so that a http request is made that deletes the article with the included id. After successfully deleting the article on the api, update local state to reflect these changes.
+
+// * [ ] `editId` is passed into the `EditForm` component. In `EditForm.js`, make a http request on mount to get the article with the id `editId`. Save the result in state.
+
+// * [ ] In `View.js`, complete `handleEdit` so that a http request is made that updates the passed in article. Set the editing state to false when the request is complete. After successfully deleting the article on the api, update local state to reflect these changes.
+
 //Task List:
-//1. Build and import axiosWithAuth module in the utils.
-//2. When the component mounts, make an http request that adds all articles to state.
-//3. Complete handleDelete method. It should make a request that delete the article with the included id.
+//1. [X]Build and import axiosWithAuth module in the utils.
+//2. [X]When the component mounts, make an http request that adds all articles to state.
+//3. [X]Complete handleDelete method. It should make a request that delete the article with the included id.
 //4. Complete handleEdit method. It should make a request that updates the article that matches the included article param.
 
 
