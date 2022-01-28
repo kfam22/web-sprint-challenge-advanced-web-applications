@@ -1,25 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import styled from 'styled-components';
 
 const Login = () => {
+    const { push } = useHistory();
+    // set state
+    const [credentials, setCredentials] = useState({username: '', password: ''});
+    const [error, setError] = useState('');
+    // handle changes
+    const handleChange = e =>{
+        setCredentials({
+            ...credentials,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    // handle submit
+    const handleSubmit = e =>{
+        e.preventDefault();
+        axios.post('http://localhost:5000/api/login', credentials)
+        .then(res=>{
+            localStorage.setItem('token', res.data.token)
+            push('/view');
+        })
+        .catch(err=>{
+            setError(err.response.data.error);
+        })
+    }
     
     return(<ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
+            <form onSubmit={handleSubmit}>
+                <div className='input-container'>
+                <label htmlFor='username'>Username</label>
+                <input onChange={handleChange} name='username' id='username' />
+                </div>
+
+                <div className='input-container'>
+                <label htmlFor='password'>Password</label>
+                <input onChange={handleChange} name='password' id='password' type='password' />
+                </div>
+
+                <button id='submit'>Submit</button>
+                {error && <p id='error'>{error}</p>}
+            </form>
         </ModalContainer>
     </ComponentContainer>);
 }
 
 export default Login;
+// * [ ] In `Login.js`, build all UI and state functionality needed to capture a username and password. On a successful login, redirect user to the `View.js` component.
+// * [X] **Make sure that the input for your username and password includes the id="username" and id="password" attributes. Codegrade autotests will fail without them.**
+// * [X] **Make sure that the submit button to your login form includes the id="submit" attribute.  Codegrade autotests will fail without them.**
+// * [X] In `Login.js`, add a p tag that will display an error if one occurs. Add in all state functionality needed to support error display.
+// * [X] **Make sure your error p tag has an id="error" attribute attached. Codegrade autotests will fail without them.**
+// * [X] Construct an http request that retrieves an auth token from the server when the username `Lambda` and the password `School` is passed into the request. Complete successful login auth flow and redirect to `View.js.`
+// * [X] Display an appropriate error message when login is not successful.
 
-//Task List
-//1. Build login form DOM from scratch, making use of styled components if needed. Make sure the username input has id="username" and the password input as id="password".
-//2. Add in a p tag with the id="error" under the login form for use in error display.
-//3. Add in necessary local state to support login form and error display.
-//4. When login form is submitted, make an http call to the login route. Save the auth token on a successful response and redirect to view page.
-//5. If the response is not successful, display an error statement. **a server provided error message can be found in ```err.response.data```**
-//6. MAKE SURE TO ADD id="username", id="password", id="error" AND id="submit" TO THE APPROPRIATE DOM ELEMENTS. YOUR AUTOTESTS WILL FAIL WITHOUT THEM.
+
 
 const ComponentContainer = styled.div`
     height: 70%;
