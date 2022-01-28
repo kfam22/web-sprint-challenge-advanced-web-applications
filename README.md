@@ -92,10 +92,10 @@ In this project, you will demonstrate your mastery of these skills by creating *
 
 ### Advanced Testing
 > *Add the following tests within Article.test.js.*
-* [ ] Build a test that shows the `Article` component, given the correct props, can render without errors.
-* [ ] Build a test that shows that when a correctly formatted article is passed into the `Article` component, the correct headline, author, summary and body are displayed.
-* [ ] The `Article` component should display "Associated Press" when an author attribute is not avalible. Build a test that verifies that that is true.
-* [ ] Build a test that show that when the deleteButton is pressed on an Article, the handleDelete functional property is executed.
+* [X] Build a test that shows the `Article` component, given the correct props, can render without errors.
+* [X] Build a test that shows that when a correctly formatted article is passed into the `Article` component, the correct headline, author, summary and body are displayed.
+* [X] The `Article` component should display "Associated Press" when an author attribute is not avalible. Build a test that verifies that that is true.
+* [X] Build a test that show that when the deleteButton is pressed on an Article, the handleDelete functional property is executed.
 
 ## Important Notes:
 * You are welcome to create additional files but **do not move or rename existing files** or folders.
@@ -116,8 +116,19 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain what a token is used for.
 
+Tokens are strings of cryptic text stored in memory like localStorage or Cookies used to verify that a user has entered valid credentials to access certain pages.  The server can identify users by this token and use logic to make decisions based on the the users permissions.
+
 2. What steps can you take in your web apps to keep your data secure?
+
+A token can be added to the header and validated whenever a user navigates to a new page or requests new information.  UI can also be changed using protected routes so that a user without valid credentials won't be able to click on links for validated users.
 
 3. Describe how web servers work.
 
+Servers are a network of computers that store, process, and distribute code.  They are physical machines and the program that runs om them.
+
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+C - create maps to  Post
+R - read maps to  Get 
+U - update maps to Put
+D - delete maps to Delete
