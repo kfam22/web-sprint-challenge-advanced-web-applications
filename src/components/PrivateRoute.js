@@ -18,7 +18,7 @@ export default PrivateRoute;
 
 //Task List:
 //1. [X]Complete PrivateRoute
-//2. []Test Private Route
+//2. [X]Test Private Route
 
 
 

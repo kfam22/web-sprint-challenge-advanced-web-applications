@@ -5,10 +5,10 @@ import styled from 'styled-components';
 
 const Login = () => {
     const { push } = useHistory();
-    // set state
+
     const [credentials, setCredentials] = useState({username: '', password: ''});
     const [error, setError] = useState('');
-    // handle changes
+
     const handleChange = e =>{
         setCredentials({
             ...credentials,
@@ -16,7 +16,6 @@ const Login = () => {
         })
     }
 
-    // handle submit
     const handleSubmit = e =>{
         e.preventDefault();
         axios.post('http://localhost:5000/api/login', credentials)
@@ -52,7 +51,7 @@ const Login = () => {
 }
 
 export default Login;
-// * [ ] In `Login.js`, build all UI and state functionality needed to capture a username and password. On a successful login, redirect user to the `View.js` component.
+// * [X] In `Login.js`, build all UI and state functionality needed to capture a username and password. On a successful login, redirect user to the `View.js` component.
 // * [X] **Make sure that the input for your username and password includes the id="username" and id="password" attributes. Codegrade autotests will fail without them.**
 // * [X] **Make sure that the submit button to your login form includes the id="submit" attribute.  Codegrade autotests will fail without them.**
 // * [X] In `Login.js`, add a p tag that will display an error if one occurs. Add in all state functionality needed to support error display.

@@ -106,9 +106,9 @@ In this project, you will demonstrate your mastery of these skills by creating *
 
 ## Submission format
 * [X] Submit via Codegrade by commiting and pushing any new changes to **your main branch.**
-* [ ] Check Codegrade before the deadline to compare its results against your local tests.
-* [ ] Check Codegrade on the days following the Sprint Challenge for reviewer feedback. For more information on how to access and read your feedback, check [here](https://www.notion.so/lambdaschool/How-to-View-Feedback-in-CodeGrade-c5147cee220c4044a25de28bcb6bb54a)
-* [ ] New commits will be evaluated by Codegrade if pushed before the sprint challenge deadline.
+* [X] Check Codegrade before the deadline to compare its results against your local tests.
+* [NA] Check Codegrade on the days following the Sprint Challenge for reviewer feedback. For more information on how to access and read your feedback, check [here](https://www.notion.so/lambdaschool/How-to-View-Feedback-in-CodeGrade-c5147cee220c4044a25de28bcb6bb54a)
+* [X] New commits will be evaluated by Codegrade if pushed before the sprint challenge deadline.
 
 ## Interview Questions
 
@@ -120,7 +120,7 @@ Tokens are strings of cryptic text stored in memory like localStorage or Cookies
 
 2. What steps can you take in your web apps to keep your data secure?
 
-A token can be added to the header and validated whenever a user navigates to a new page or requests new information.  UI can also be changed using protected routes so that a user without valid credentials won't be able to click on links for validated users.
+A token can be added to the header and validated whenever a user navigates to a new page or requests new information.  UI can also be changed using protected routes so that a user without valid credentials won't be able to click on links available to validated users.
 
 3. Describe how web servers work.
 
